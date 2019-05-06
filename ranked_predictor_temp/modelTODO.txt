@@ -1,0 +1,25 @@
+1. average player win %
+2. average champion win %
+3. players with winrate >80% 
+4. 
+5.
+6.
+7.
+8.
+9.
+
+
+
+
+
+
+
+
+
+
+
+
+/////// refactoring
+
+move constants into consts file.
+move generic get_request method

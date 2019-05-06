@@ -1,0 +1,19 @@
+{% extends "predictor/base.html" %}
+{% block content %}
+    {% for predict in predicts %}
+          <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ predict.summoner }}</a>
+                <small class="text-muted">{{ predict.date }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ predict.predict }} - {{ predict.confidence }} - {{ predict.result }}</a></h2>
+              <p class="article-content">some other data??</p>
+            </div>
+          </article>
+    {% endfor %}
+{% endblock content %}
+
+<h1>{{ predict.summoner }}</h1>
+<p>Prediction: {{ predict.predict }} Result: {{ predict.result }}</p>
+<p>{{ predict.date }}</p>

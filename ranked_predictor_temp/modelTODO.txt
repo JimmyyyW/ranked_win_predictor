@@ -1,5 +1,5 @@
 1. average player win %
-2. average champion win %
+2. average champion win % (in role only... need to throw data with incorrect duo lane info)
 3. players with winrate >80% 
 4. 
 5.

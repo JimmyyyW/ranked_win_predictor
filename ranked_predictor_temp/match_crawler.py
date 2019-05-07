@@ -3,26 +3,27 @@ import json
 import time
 import csv
 
-API_KEY = '?api_key=RGAPI-d46343f5-bcf7-461a-a1bf-a00d7c16ac80'
+API_KEY = '?api_key=RGAPI-a26d98e8-b93b-4d7b-ad13-c6df50cc7eb3'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
 MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'
 MATCH_BY_MATCHID = 'match/v4/matches/'
 
-class MatchCrawler:
-    def get_request(self,url):
-        req = requests.get(url+API_KEY)
-        if req.status_code != 200:
-            print(req.status_code)
-        return req.json()
+def get_request(url):
+    req = requests.get(url+API_KEY)
+    if req.status_code != 200:
+        print(req.status_code)
+    return req.json()
 
+class MatchCrawler:
     def get_summonerId(self,summoner):
-        req = self.get_request(BASE_URL+SUMMONER_BY_NAME+summoner)
+        req = get_request(BASE_URL+SUMMONER_BY_NAME+summoner)
         summonerId = req['accountId']
         return summonerId
+    
 
     def get_matches_for_summoner(self,accountId):
-        matchlist = self.get_request(BASE_URL+MATCHLIST_BY_ACCOUNT+accountId)
+        matchlist = get_request(BASE_URL+MATCHLIST_BY_ACCOUNT+accountId)
         matches = matchlist['matches']
         games_for_summoner = []
         for match in matches:
@@ -30,7 +31,7 @@ class MatchCrawler:
         return games_for_summoner
 
     def get_summoners_from_match(self,gameId):
-        matchInfo = self.get_request(BASE_URL+MATCH_BY_MATCHID+gameId)
+        matchInfo = get_request(BASE_URL+MATCH_BY_MATCHID+gameId)
         participants = matchInfo['participantIdentities']
         summoners = []
         for player in participants:
@@ -71,9 +72,9 @@ class MatchCrawler:
                 print('completed')
         return None
 
-mc = MatchCrawler()
+#mc = MatchCrawler()
 summoner = 'JimmyyW'
-accountId = mc.get_summonerId(summoner)
-matches = mc.get_matches_for_summoner(accountId)
-print(matches[1])
-mc.crawler_writer(matches[1])
+#accountId = mc.get_summonerId(summoner)
+#matches = mc.get_matches_for_summoner(accountId)
+#print(matches[1])
+#mc.crawler_writer(matches[1])

@@ -3,7 +3,7 @@ import json
 import time
 import csv
 
-API_KEY = '?api_key=RGAPI-8a58b515-ef8f-4e65-9cee-da0914e63084'
+API_KEY = '?api_key=RGAPI-86c70ff5-b18e-4101-87b6-f8a10b549c14'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
 MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'

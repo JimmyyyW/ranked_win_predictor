@@ -2,8 +2,9 @@ import numpy
 import pandas as pd
 import time
 from match_crawler import get_request
+from statistics import mode
 
-API_KEY = '?api_key=RGAPI-86c70ff5-b18e-4101-87b6-f8a10b549c14'
+API_KEY = '?api_key=RGAPI-876e55b8-e081-4a11-aa13-d892df273ae5'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 BASE_URL_CHAMPIONGG = 'http://api.champion.gg/v2/champions/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
@@ -17,15 +18,16 @@ class DataHandler:
     #Instantiate with gameId to get modelled data for single game
     def __init__(self, gameId_input):
         self.gameId = gameId_input
+        self.match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
     '''
-    get all players from game
+    get all summoner Ids from game
     '''
     def get_summonerIds_from_game(self):
         summonerIds = {}
         i=0
-        match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
-        for data in match_data:
-            data = (match_data['participantIdentities'])
+        #match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
+        for data in self.match_data:
+            data = (self.match_data['participantIdentities'])
             for player in data:
                 while i<10:
                     player = data[i]
@@ -33,6 +35,22 @@ class DataHandler:
                     summoner = (player['player'])
                     summonerIds[player['participantId']]=(summoner['summonerId'])
         return summonerIds
+        '''
+        get all summoner accountIds from game
+        '''
+    def get_accountIds_from_game(self):
+        accountIds = {}
+        i=0
+        #match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
+        for data in self.match_data:
+            data = (self.match_data['participantIdentities'])
+            for player in data:
+                while i<10:
+                    player = data[i]
+                    i+=1
+                    summoner = (player['player'])
+                    accountIds[player['participantId']]=(summoner['accountId'])
+        return accountIds
     '''
         get summoner data for ranked games only
         '''
@@ -105,14 +123,15 @@ class DataHandler:
     calculate difference in total mastery accross the two teams
     '''
     def get_diff_champion_mastery(self, summonerIds):
+        print('calculating difference in champion mastery...')
         championIds = []
         summonerIds = []
         i, j, team1_combined, team2_combined = 0,0,0,0
-        match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
-        data = (match_data['participants'])
+        #match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
+        data = (self.match_data['participants'])
         for participants in data:
             championIds.append(participants['championId'])
-        participantIdentities = (match_data['participantIdentities'])
+        participantIdentities = (self.match_data['participantIdentities'])
         for participant in participantIdentities:
             summonerIds.append(participant['player']['summonerId'])
         for summonerId in summonerIds:
@@ -122,7 +141,6 @@ class DataHandler:
             time.sleep(0.5)
             for champion in masteryData:
                 if champion.get('championId') == championId:
-                    print(champion.get('championPoints'))
                     player_mastery = champion.get('championPoints')
                     if j<5:
                         team1_combined += player_mastery
@@ -139,17 +157,49 @@ class DataHandler:
     '''
     collects data for each player, determining whether they are 'on-role' or 'off-role', where
     generally players that are off-role will play significantly worse relative to players on-role 
-    at the same level. Calculates difference in number of off-roles
+    at the same level. Calculates difference in number of off-roles. Has to be calculated on a last 
+    20 games basis as no official data regarding roles exists.
     '''
-    def get_diff_onrole(self):
-        diff_onrole = -3
-        return diff_onrole
+    def get_diff_onrole(self, accountIds):
+        print('calculating the difference in number of players on role...')
+        i = 1
+        roles_selected = []
+        for accountId in accountIds:
+            accountId = accountIds.get(i)
+            i+=1
+            matches_data = get_request(BASE_URL+MATCHLIST_BY_ACCOUNT+str(accountId))
+            time.sleep(0.5)
+            matches = matches_data.get('matches')
+            for match in matches:
+                if match.get('queue') == 420:
+                    roles_selected.append(match.get('lane'))
+            mode_role = mode(roles_selected)
+            #get players role in current game
+            
+        return mode_role
 
 def generate_modelled_data(gameId):
     return None
 
-dh = DataHandler('4019902021')
-test = dh.get_ranked5x5_by_summoner(dh.get_summonerIds_from_game())
+dh = DataHandler('3984649079')
+#summonderIds = dh.get_summonerIds_from_game()
+accountIds = dh.get_accountIds_from_game()
+#test = dh.get_ranked5x5_by_summoner(summonderIds)
+'''
+print('----- avg-wr ------')
 print(dh.get_avg_winrate(test))
+print('-------------------')
+print('--- avg_winstreak ---')
 print(dh.get_total_winstreak(test))
+print('---------------------')
+print('-- champ mastery diff --')
 print(dh.get_diff_champion_mastery('4019902021'))
+print('------------------------')
+print('-- champion WR diff --')
+#print(dh.get_avg_champion_winrate(summonderIds))
+print('----------------------')
+'''
+#KyRXJxod-2zuPj2ACi4wzxrlutVFpgFWAFyGWvGS3Az1pk0
+print('--- diff on role ---')
+print(dh.get_diff_onrole(accountIds))
+print('---------------------')

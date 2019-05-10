@@ -3,7 +3,7 @@ import json
 import time
 import csv
 
-API_KEY = '?api_key=RGAPI-86c70ff5-b18e-4101-87b6-f8a10b549c14'
+API_KEY = '?api_key=RGAPI-876e55b8-e081-4a11-aa13-d892df273ae5'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
 MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'
@@ -13,6 +13,7 @@ def get_request(url):
     req = requests.get(url+API_KEY)
     if req.status_code != 200:
         print(req.status_code)
+       # print(req.headers)
     return req.json()
 
 class MatchCrawler:
@@ -21,7 +22,6 @@ class MatchCrawler:
         summonerId = req['accountId']
         return summonerId
     
-
     def get_matches_for_summoner(self,accountId):
         matchlist = get_request(BASE_URL+MATCHLIST_BY_ACCOUNT+accountId)
         matches = matchlist['matches']

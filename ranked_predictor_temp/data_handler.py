@@ -4,7 +4,7 @@ import time
 from match_crawler import get_request
 from statistics import mode
 
-API_KEY = '?api_key=RGAPI-876e55b8-e081-4a11-aa13-d892df273ae5'
+API_KEY = '?api_key=RGAPI-1967b6c5-886f-4c13-a2e0-e00f526cb31d'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 BASE_URL_CHAMPIONGG = 'http://api.champion.gg/v2/champions/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
@@ -31,17 +31,17 @@ class DataHandler:
             for player in data:
                 while i<10:
                     player = data[i]
-                    i+=1
                     summoner = (player['player'])
                     summonerIds[player['participantId']]=(summoner['summonerId'])
+                    i+=1
         return summonerIds
-        '''
+    '''
         get all summoner accountIds from game
         '''
     def get_accountIds_from_game(self):
         accountIds = {}
         i=0
-        #match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
+        match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
         for data in self.match_data:
             data = (self.match_data['participantIdentities'])
             for player in data:
@@ -66,10 +66,12 @@ class DataHandler:
                 time.sleep(0.5)
                 if len(summoner_league_data) == 3:
                     ranked_5x5 = summoner_league_data[2]
-                if len(summoner_league_data) == 2:
+                elif len(summoner_league_data) == 2:
                     ranked_5x5 = summoner_league_data[1]
-                else:
+                elif len(summoner_league_data) == 1:
                     ranked_5x5 = summoner_league_data[0]
+                else:
+                    ranked_5x5 = 'error'
                 ranked_stats.append(ranked_5x5)
         return ranked_stats
     ''' 
@@ -80,20 +82,23 @@ class DataHandler:
         i=0
         team1_wins, team2_wins, team1_losses, team2_losses = 0, 0, 0, 0
         print('calculating average winrate...')
-        for summoner_data in ranked_stats:
-            wins = summoner_data['wins']
-            losses = summoner_data['losses']
-            i+=1
-            if i<6:
-                team1_wins = team1_wins + wins
-                team1_losses = team1_losses + losses
-                team1_avg_wr = (wins/(wins+losses))*100
-            else:
-                team2_wins = team2_wins + wins
-                team2_losses = team2_losses + losses
-                team2_avg_wr = (wins/(wins+losses))*100
-        avg_wr = team1_avg_wr - team2_avg_wr
-        return avg_wr
+        try:
+            for summoner_data in ranked_stats:
+                wins = summoner_data['wins']
+                losses = summoner_data['losses']
+                i+=1
+                if i<6:
+                    team1_wins = team1_wins + wins
+                    team1_losses = team1_losses + losses
+                    team1_avg_wr = (wins/(wins+losses))*100
+                else:
+                    team2_wins = team2_wins + wins
+                    team2_losses = team2_losses + losses
+                    team2_avg_wr = (wins/(wins+losses))*100
+            avg_wr = team1_avg_wr - team2_avg_wr
+            return avg_wr
+        except:
+            return None
     '''
     calculate difference in winstreak, should aid in modelling tilt (playing worse
     because of previous losses, out of form etc). Will also help model for smurfs
@@ -103,19 +108,22 @@ class DataHandler:
         i=0
         team1_winstreak, team2_winstreak = 0,0
         print('calculating winstreaks...')
-        for summoner_data in ranked_stats:
-            winstreak = summoner_data['hotStreak']
-            i+=1
-            if i<6 and winstreak == True:
-                team1_winstreak += 1
-            else:
-                team1_winstreak += 0
-            if i>5 and winstreak == True:
-                team2_winstreak += 1
-            else:
-                team2_winstreak += 0
-        avg_winstreak = team1_winstreak - team2_winstreak
-        return avg_winstreak
+        try:
+            for summoner_data in ranked_stats:
+                winstreak = summoner_data['hotStreak']
+                i+=1
+                if i<6 and winstreak == True:
+                    team1_winstreak += 1
+                else:
+                    team1_winstreak += 0
+                if i>5 and winstreak == True:
+                    team2_winstreak += 1
+                else:
+                    team2_winstreak += 0
+            avg_winstreak = team1_winstreak - team2_winstreak
+            return avg_winstreak
+        except:
+            print('total_winstreak error')
     #get average champion mastery of all players of a team
     '''
     get participant and champion id from game, find out how much mastery each player has 
@@ -154,52 +162,68 @@ class DataHandler:
     def get_avg_champion_winrate(self):
         avg_winrate = 53
         return avg_winrate
+        # to do.... champion.gg no longer exists, will have to source champion WRs from riotAPI.
     '''
     collects data for each player, determining whether they are 'on-role' or 'off-role', where
     generally players that are off-role will play significantly worse relative to players on-role 
     at the same level. Calculates difference in number of off-roles. Has to be calculated on a last 
-    20 games basis as no official data regarding roles exists.
+    20 games basis as no official data regarding roles exists. Note if players don't have ranked games
+    in their last 20 matches, this will default to undefined and bias towards the other team.
+    This feature will aim to factor in depreciation in skill for players who aren't playing regularly.
     '''
+    
     def get_diff_onrole(self, accountIds):
         print('calculating the difference in number of players on role...')
-        i = 1
-        roles_selected = []
+        i,j, team1_total, team2_total = 1,0,0,0
+        participant_by_main_role = {}
         for accountId in accountIds:
+            roles_selected = []
             accountId = accountIds.get(i)
-            i+=1
             matches_data = get_request(BASE_URL+MATCHLIST_BY_ACCOUNT+str(accountId))
             time.sleep(0.5)
             matches = matches_data.get('matches')
-            for match in matches:
-                if match.get('queue') == 420:
-                    roles_selected.append(match.get('lane'))
-            mode_role = mode(roles_selected)
-            #get players role in current game
-            
-        return mode_role
+            try:
+                for match in matches:
+                    if match.get('queue') == 420:
+                        roles_selected.append(match.get('lane'))
+            except:
+                roles_selected.append('UNDEFINED')
+            try:
+                mode_role = mode(roles_selected)
+            except:
+                mode_role = 'UNDEFINED'
+            participant_by_main_role[i] = mode_role
+            participant_role = self.match_data['participants'][j]['timeline']['lane'] #get players role in current game 
+            i+=1
+            j+=1
+            if j<6 and participant_role == mode_role:
+                team1_total +=1
+            elif j<11 and participant_role == mode_role:
+                team2_total +=1
+            diff_on_role = team1_total - team2_total         
+        return diff_on_role
+        
 
 def generate_modelled_data(gameId):
-    return None
+    dh = DataHandler(gameId)
+    accountIds = dh.get_accountIds_from_game()
+    summonerIds = dh.get_summonerIds_from_game()
+    ranked_5x5 = dh.get_ranked5x5_by_summoner(summonerIds)
+    print('----- avg-wr ------')
+    print(dh.get_avg_winrate(ranked_5x5))
+    print('-------------------')
+    print('--- avg_winstreak ---')
+    print(dh.get_total_winstreak(ranked_5x5))
+    print('---------------------')
+    print('-- champ mastery diff --')
+    print(dh.get_diff_champion_mastery(gameId))
+    print('------------------------')
+    print('-- champion WR diff --')
+    print('----------------------')
+    print('--- diff on role ---')
+    print(dh.get_diff_onrole(accountIds))
+    print('---------------------')
 
-dh = DataHandler('3984649079')
-#summonderIds = dh.get_summonerIds_from_game()
-accountIds = dh.get_accountIds_from_game()
-#test = dh.get_ranked5x5_by_summoner(summonderIds)
-'''
-print('----- avg-wr ------')
-print(dh.get_avg_winrate(test))
-print('-------------------')
-print('--- avg_winstreak ---')
-print(dh.get_total_winstreak(test))
-print('---------------------')
-print('-- champ mastery diff --')
-print(dh.get_diff_champion_mastery('4019902021'))
-print('------------------------')
-print('-- champion WR diff --')
-#print(dh.get_avg_champion_winrate(summonderIds))
-print('----------------------')
-'''
-#KyRXJxod-2zuPj2ACi4wzxrlutVFpgFWAFyGWvGS3Az1pk0
-print('--- diff on role ---')
-print(dh.get_diff_onrole(accountIds))
-print('---------------------')
+
+generate_modelled_data('4020713212')
+

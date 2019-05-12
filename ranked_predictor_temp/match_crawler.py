@@ -3,7 +3,7 @@ import json
 import time
 import csv
 
-API_KEY = '?api_key=RGAPI-876e55b8-e081-4a11-aa13-d892df273ae5'
+API_KEY = '?api_key=RGAPI-1967b6c5-886f-4c13-a2e0-e00f526cb31d'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
 MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'
@@ -77,4 +77,4 @@ summoner = 'JimmyyW'
 #accountId = mc.get_summonerId(summoner)
 #matches = mc.get_matches_for_summoner(accountId)
 #print(matches[1])
-#mc.crawler_writer(matches[1])
+#mc.crawler_writer(matches[0])

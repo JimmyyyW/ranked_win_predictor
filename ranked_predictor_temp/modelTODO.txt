@@ -1,10 +1,10 @@
-1. average player win %
-2. average champion win % (in role only... need to throw data with incorrect duo lane info)
-3. players with winrate >80% 
-4. 
-5.
-6.
-7.
+1. average player win % DONE
+2. average champion win % ... CHAMPION.GG DOWN
+3. players with winrate >80% ... SMURFCHECKER TODO
+4. average winsreak ... DONE
+5. difference in number/players onrole ... DONE
+6. champion mastery diff ... DONE
+7. 
 8.
 9.
 
@@ -13,6 +13,10 @@ NEED TO DOCUMENT NUMBER OF API CALLS !!!!!
 NEED TO FILTER FOR RANKED DATA TO SAVE TO CSV ONLY 
 
 NEED TO FILTER MATCH_IDS FOR UNIQUE GAMES ONLY 
+
+TIDY METHODS, DECLARE IN PARAMATERS
+
+move generate_modelled_data to new file with other finalising logic.
 
 
 

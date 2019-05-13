@@ -4,7 +4,7 @@ import time
 from match_crawler import get_request
 from statistics import mode
 
-API_KEY = '?api_key=RGAPI-1967b6c5-886f-4c13-a2e0-e00f526cb31d'
+API_KEY = '?api_key=RGAPI-266cd406-3277-4930-b55c-be5b3952a87e'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 BASE_URL_CHAMPIONGG = 'http://api.champion.gg/v2/champions/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
@@ -41,7 +41,7 @@ class DataHandler:
     def get_accountIds_from_game(self):
         accountIds = {}
         i=0
-        match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
+        #match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
         for data in self.match_data:
             data = (self.match_data['participantIdentities'])
             for player in data:
@@ -226,4 +226,3 @@ def generate_modelled_data(gameId):
 
 
 generate_modelled_data('4020713212')
-

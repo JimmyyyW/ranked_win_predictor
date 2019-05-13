@@ -2,8 +2,9 @@ import requests
 import json
 import time
 import csv
+import progress_bar
 
-API_KEY = '?api_key=RGAPI-1967b6c5-886f-4c13-a2e0-e00f526cb31d'
+API_KEY = '?api_key=RGAPI-c2b39cff-166a-4aca-b536-a1423bc11476'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
 MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'
@@ -43,38 +44,43 @@ class MatchCrawler:
     for each iteration save all matches to csv until threshold reached
     '''
 
-    def crawler_writer(self, gameId):
+    def crawler_writer(self, gameId, thresh=20, pg=0, lb=1):
         participants_in_game = self.get_summoners_from_match(str(gameId))
-        branch = []
-        i=0
-        j=0
-        for participants in participants_in_game:
-            while i<2:
-                print('collecting data....')
-                matches_for_participant = self.get_matches_for_summoner(participants)
-                for matchId in matches_for_participant:
-                    while j<2:
-                        branch = self.get_summoners_from_match(str(matchId))
-                        time.sleep(2)
-                        i=i+1
-                        j=j+1
-                        for leafs in branch:
-                            try:
-                                matches_for_participant.append(self.get_matches_for_summoner(leafs))
-                                time.sleep(2)
-                            except:
-                                print('something went wrong')
-                            with open('match_ids.csv', 'w') as csvFile:
-                                writer = csv.writer(csvFile)
-                                writer.writerow(matches_for_participant)
-                            csvFile.close()
-                time.sleep(2)
-                print('completed')
+        print('collecting data..')
+        #progress_bar.printProgressBar(0, thresh, prefix='Progress:', suffix='Complete', length=50)
+        with open('match_ids2.csv', 'w', newline='') as csvFile:
+            writer = csv.writer(csvFile)
+            for participants in participants_in_game:
+                while pg<thresh:
+                    matches_for_participant = self.get_matches_for_summoner(participants)
+                    time.sleep(2.5)
+                    for matchId in matches_for_participant:
+                        try:
+                            players = self.get_summoners_from_match(str(matchId))
+                            time.sleep(2.5)
+                            for player in players:
+                                writer.writerow(self.get_matches_for_summoner(player))
+                                print(player)
+                                pg+=20
+                                print(pg)
+                                print(thresh)
+                                time.sleep(2.5) #at this tier of recursion 2000 gameIds should have been found
+                                #printProgressBar(lb+1, thresh, prefix='Progress:', suffix='Complete', length=50)
+                                if pg >= thresh:
+                                    print('completed')
+                                    csvFile.close()
+                                    return None
+                                else:
+                                    continue
+                        except:
+                            print('something went wrong')
+        print('completed')
+        csvFile.close()
         return None
 
-#mc = MatchCrawler()
+mc = MatchCrawler()
 summoner = 'JimmyyW'
-#accountId = mc.get_summonerId(summoner)
-#matches = mc.get_matches_for_summoner(accountId)
+accountId = mc.get_summonerId(summoner)
+matches = mc.get_matches_for_summoner(accountId)
 #print(matches[1])
-#mc.crawler_writer(matches[0])
+mc.crawler_writer(matches[0])

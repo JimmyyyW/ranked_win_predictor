@@ -2,7 +2,8 @@ import requests
 import json
 import time
 import csv
-import progress_bar
+import tqdm
+from tqdm import tqdm
 
 API_KEY = '?api_key=RGAPI-c2b39cff-166a-4aca-b536-a1423bc11476'
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
@@ -13,8 +14,14 @@ MATCH_BY_MATCHID = 'match/v4/matches/'
 def get_request(url):
     req = requests.get(url+API_KEY)
     if req.status_code != 200:
-        print(req.status_code)
-       # print(req.headers)
+        if req.status_code == 404:
+            None #LOGGER
+        elif req.status_code == 429:
+            None #LOGGER
+        elif req.status_code == 403:
+            None #LOGGER
+        else:
+            print(req.status_code)
     return req.json()
 
 class MatchCrawler:
@@ -44,37 +51,33 @@ class MatchCrawler:
     for each iteration save all matches to csv until threshold reached
     '''
 
-    def crawler_writer(self, gameId, thresh=20, pg=0, lb=1):
+    def crawler_writer(self, gameId, thresh=4000, pg=0, lb=1):
         participants_in_game = self.get_summoners_from_match(str(gameId))
         print('collecting data..')
-        #progress_bar.printProgressBar(0, thresh, prefix='Progress:', suffix='Complete', length=50)
         with open('match_ids2.csv', 'w', newline='') as csvFile:
-            writer = csv.writer(csvFile)
-            for participants in participants_in_game:
-                while pg<thresh:
-                    matches_for_participant = self.get_matches_for_summoner(participants)
-                    time.sleep(2.5)
-                    for matchId in matches_for_participant:
-                        try:
-                            players = self.get_summoners_from_match(str(matchId))
-                            time.sleep(2.5)
-                            for player in players:
-                                writer.writerow(self.get_matches_for_summoner(player))
-                                print(player)
-                                pg+=20
-                                print(pg)
-                                print(thresh)
-                                time.sleep(2.5) #at this tier of recursion 2000 gameIds should have been found
-                                #printProgressBar(lb+1, thresh, prefix='Progress:', suffix='Complete', length=50)
-                                if pg >= thresh:
-                                    print('completed')
-                                    csvFile.close()
-                                    return None
-                                else:
-                                    continue
-                        except:
-                            print('something went wrong')
-        print('completed')
+            writer = csv.writer(csvFile, delimiter=',')
+            with tqdm(total=thresh) as pbar:
+                for participants in participants_in_game:
+                    while pg<thresh:
+                        matches_for_participant = self.get_matches_for_summoner(participants)
+                        time.sleep(2.5)
+                        for matchId in matches_for_participant:
+                            try:
+                                players = self.get_summoners_from_match(str(matchId))
+                                time.sleep(2.5)
+                                for player in players:
+                                    writer.writerow(self.get_matches_for_summoner(player))
+                                    pg+=20
+                                    time.sleep(2.5) #at this tier of recursion 2000 gameIds should have been found
+                                    pbar.update(20)
+                                    if pg >= thresh:
+                                        print('completed')
+                                        csvFile.close()
+                                        return None
+                                    else:
+                                        continue
+                            except:
+                                continue
         csvFile.close()
         return None
 

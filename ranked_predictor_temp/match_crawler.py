@@ -3,6 +3,7 @@ import json
 import time
 import csv
 import tqdm
+import logging
 from tqdm import tqdm
 
 API_KEY = '?api_key=RGAPI-c2b39cff-166a-4aca-b536-a1423bc11476'
@@ -11,14 +12,19 @@ SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
 MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'
 MATCH_BY_MATCHID = 'match/v4/matches/'
 
+logging.basicConfig(filename='requests.log',level=logging.DEBUG)
+
 def get_request(url):
     req = requests.get(url+API_KEY)
     if req.status_code != 200:
         if req.status_code == 404:
+            logging.error(str(req.status_code) + ' invalid request')
             None #LOGGER
         elif req.status_code == 429:
+            logging.critical(str(req.status_code)+ ' RATE LIMITED')
             None #LOGGER
         elif req.status_code == 403:
+            logging.critical(str(req.status_code)+ ' check API key')
             None #LOGGER
         else:
             print(req.status_code)

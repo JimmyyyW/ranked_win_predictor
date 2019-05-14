@@ -1,24 +1,16 @@
 import numpy
 import pandas as pd
 import time
+import consts as cs
 from match_crawler import get_request
 from statistics import mode
-
-API_KEY = '?api_key=RGAPI-266cd406-3277-4930-b55c-be5b3952a87e'
-BASE_URL = 'https://euw1.api.riotgames.com/lol/'
-BASE_URL_CHAMPIONGG = 'http://api.champion.gg/v2/champions/'
-SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'
-MATCHLIST_BY_ACCOUNT = 'match/v4/matchlists/by-account/'
-MATCH_BY_MATCHID = 'match/v4/matches/'
-LEAGUE_BY_SUMMONER = 'league/v4/entries/by-summoner/'
-MASTERY_BY_SUMMONER = 'champion-mastery/v4/champion-masteries/by-summoner/'
 
 #Generates data, modelled and ready for training/testing neural net
 class DataHandler:
     #Instantiate with gameId to get modelled data for single game
     def __init__(self, gameId_input):
         self.gameId = gameId_input
-        self.match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
+        self.match_data = get_request(cs.BASE_URL+cs.MATCH_BY_MATCHID+self.gameId)
     '''
     get all summoner Ids from game
     '''
@@ -62,7 +54,7 @@ class DataHandler:
             while i < 11:
                 summonerId = summonerIds.get(i)
                 i+=1
-                summoner_league_data = get_request(BASE_URL+LEAGUE_BY_SUMMONER+summonerId)
+                summoner_league_data = get_request(cs.BASE_URL+cs.LEAGUE_BY_SUMMONER+summonerId)
                 time.sleep(0.5)
                 if len(summoner_league_data) == 3:
                     ranked_5x5 = summoner_league_data[2]
@@ -144,8 +136,8 @@ class DataHandler:
             summonerIds.append(participant['player']['summonerId'])
         for summonerId in summonerIds:
             championId = championIds[i] #group summonerId with corresponding championId
-            i+=1
-            masteryData = get_request(BASE_URL+MASTERY_BY_SUMMONER+summonerId)
+            i+=1 
+            masteryData = get_request(cs.BASE_URL+cs.MASTERY_BY_SUMMONER+summonerId)
             time.sleep(0.5)
             for champion in masteryData:
                 if champion.get('championId') == championId:
@@ -179,7 +171,7 @@ class DataHandler:
         for accountId in accountIds:
             roles_selected = []
             accountId = accountIds.get(i)
-            matches_data = get_request(BASE_URL+MATCHLIST_BY_ACCOUNT+str(accountId))
+            matches_data = get_request(cs.BASE_URL+cs.MATCHLIST_BY_ACCOUNT+str(accountId))
             time.sleep(0.5)
             matches = matches_data.get('matches')
             try:

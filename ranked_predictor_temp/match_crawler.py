@@ -1,13 +1,22 @@
+import logging
+import logging.config
+import os
+from os import path
+log_file_path = path.join(path.dirname(path.abspath(__file__)), 'logging.conf')
+logging.config.fileConfig(log_file_path, disable_existing_loggers=False)
+req_logger = logging.getLogger('requests')
+
 import requests
 import json
 import time
 import csv
 import tqdm
-import logging
+
+
 import consts as cs
 from tqdm import tqdm
 
-logging.basicConfig(filename='requests.log',level=logging.DEBUG)
+
 '''
 backbone of URL requests, 
 '''
@@ -15,17 +24,18 @@ def get_request(url):
     req = requests.get(url+cs.API_KEY)
     if req.status_code != 200:
         if req.status_code == 404:
-            logging.error(str(req.status_code) + ' invalid request')
+            req_logger.error(str(req.status_code) + ' invalid request')
             None #LOGGER
         elif req.status_code == 429:
-            logging.critical(str(req.status_code)+ ' RATE LIMITED')
+            req_logger.critical(str(req.status_code)+ ' RATE LIMITED')
             None #LOGGER
         elif req.status_code == 403:
-            logging.critical(str(req.status_code)+ ' check API key')
+            req_logger.critical(str(req.status_code)+ ' check API key')
             None #LOGGER
         else:
-            logging.info(str(req.status_code)+ ' other none-200')
+            req_logger.info(str(req.status_code)+ ' other none-200')
             None
+    req_logger.info(str(req.status_code)+ ' successful request')
     return req.json()
 
 class MatchCrawler:
@@ -55,7 +65,7 @@ class MatchCrawler:
     for each iteration save all matches to csv until threshold reached
     '''
 
-    def crawler_writer(self, gameId, thresh=4000, pg=0, lb=1):
+    def crawler_writer(self, gameId, thresh=100, pg=0, lb=1):
         participants_in_game = self.get_summoners_from_match(str(gameId))
         print('collecting data..')
         with open('match_ids.csv', 'w', newline='') as csvFile:

@@ -2,6 +2,8 @@ import numpy
 import pandas as pd
 import time
 import consts as cs
+import tqdm
+from tqdm import tqdm
 from match_crawler import get_request
 from statistics import mode
 
@@ -168,31 +170,34 @@ class DataHandler:
         print('calculating the difference in number of players on role...')
         i,j, team1_total, team2_total = 1,0,0,0
         participant_by_main_role = {}
-        for accountId in accountIds:
-            roles_selected = []
-            accountId = accountIds.get(i)
-            matches_data = get_request(cs.BASE_URL+cs.MATCHLIST_BY_ACCOUNT+str(accountId))
-            time.sleep(0.5)
-            matches = matches_data.get('matches')
-            try:
-                for match in matches:
-                    if match.get('queue') == 420:
-                        roles_selected.append(match.get('lane'))
-            except:
-                roles_selected.append('UNDEFINED')
-            try:
-                mode_role = mode(roles_selected)
-            except:
-                mode_role = 'UNDEFINED'
-            participant_by_main_role[i] = mode_role
-            participant_role = self.match_data['participants'][j]['timeline']['lane'] #get players role in current game 
-            i+=1
-            j+=1
-            if j<6 and participant_role == mode_role:
-                team1_total +=1
-            elif j<11 and participant_role == mode_role:
-                team2_total +=1
-            diff_on_role = team1_total - team2_total         
+        with tqdm(total=len(accountIds)) as pbar:
+            for accountId in accountIds:
+                roles_selected = []
+                accountId = accountIds.get(i)
+                matches_data = get_request(cs.BASE_URL+cs.MATCHLIST_BY_ACCOUNT+str(accountId))
+                time.sleep(0.5)
+                matches = matches_data.get('matches')
+                try:
+                    for match in matches:
+                        if match.get('queue') == 420:
+                            roles_selected.append(match.get('lane'))
+                except:
+                    roles_selected.append('UNDEFINED')
+                try:
+                    mode_role = mode(roles_selected)
+                except:
+                    mode_role = 'UNDEFINED'
+                participant_by_main_role[i] = mode_role
+                participant_role = self.match_data['participants'][j]['timeline']['lane'] #get players role in current game 
+                i+=1
+                j+=1
+                if j<6 and participant_role == mode_role:
+                    team1_total +=1
+                    pbar.update(1)
+                elif j<11 and participant_role == mode_role:
+                    team2_total +=1
+                    pbar.update(1)
+                diff_on_role = team1_total - team2_total         
         return diff_on_role
         
 

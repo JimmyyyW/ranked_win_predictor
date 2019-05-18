@@ -11,8 +11,7 @@ import json
 import time
 import csv
 import tqdm
-
-
+import pandas as pd
 import consts as cs
 from tqdm import tqdm
 
@@ -65,34 +64,34 @@ class MatchCrawler:
     for each iteration save all matches to csv until threshold reached
     '''
 
-    def crawler_writer(self, gameId, thresh=2000, pg=0, lb=1):
+    def crawler_writer(self, gameId, thresh=40000, n=0, lb=1):
+        df = pd.DataFrame()
         participants_in_game = self.get_summoners_from_match(str(gameId))
         print('collecting data..')
-        with open('match_ids.csv', 'w', newline='') as csvFile:
-            writer = csv.writer(csvFile, delimiter=',')
-            with tqdm(total=thresh) as pbar:
-                for participants in participants_in_game:
-                    while pg<thresh:
-                        matches_for_participant = self.get_matches_for_summoner(participants)
-                        time.sleep(2.5)
-                        for matchId in matches_for_participant:
-                            try:
-                                players = self.get_summoners_from_match(str(matchId))
-                                time.sleep(2.5)
-                                for player in players:
-                                    writer.writerow(self.get_matches_for_summoner(player))
-                                    pg+=20
-                                    time.sleep(2.5) #at this tier of recursion 2000 gameIds should have been found
-                                    pbar.update(20)
-                                    if pg >= thresh:
-                                        print('completed')
-                                        csvFile.close()
-                                        return None
-                                    else:
-                                        continue
-                            except:
-                                continue
-        csvFile.close()
+        with tqdm(total=thresh) as pbar:
+            for participants in participants_in_game:
+                while n<thresh:
+                    matches_for_participant = self.get_matches_for_summoner(participants)
+                    time.sleep(2.5)
+                    for matchId in matches_for_participant:
+                        try:
+                            players = self.get_summoners_from_match(str(matchId))
+                            time.sleep(2.5)
+                            for player in players:
+                                gameId = self.get_matches_for_summoner(player)
+                                n+=100
+                                df_temp = pd.DataFrame(gameId,columns=['GameId'])
+                                df = df.append(df_temp, ignore_index=True)
+                                time.sleep(2.5) #at this tier of recursion 2000 gameIds should have been found
+                                pbar.update(100)
+                                if n >= thresh:
+                                    print('completed')
+                                    df.to_csv('match_ids.csv')
+                                    return None
+                                else:
+                                    continue
+                        except:
+                            continue
         return None
 
 mc = MatchCrawler()

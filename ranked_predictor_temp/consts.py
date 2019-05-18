@@ -1,8 +1,11 @@
+
+
+
 '''
 Global variables for http requests
 '''
 
-API_KEY = '?api_key=RGAPI-0781c456-6d82-476c-b882-4ee91f1cf5c2'
+API_KEY = '?api_key=RGAPI-8da4767a-8571-4f9f-8b1c-2a0a9c8f2e6e'
 #ADD MULTIPLE KEYS!!! 
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'

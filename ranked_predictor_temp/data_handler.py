@@ -200,7 +200,7 @@ class DataHandler:
                 diff_on_role = team1_total - team2_total         
         return diff_on_role
         
-
+'''
 def generate_modelled_data(gameId):
     dh = DataHandler(gameId)
     accountIds = dh.get_accountIds_from_game()
@@ -223,3 +223,4 @@ def generate_modelled_data(gameId):
 
 
 generate_modelled_data('4020713212')
+'''

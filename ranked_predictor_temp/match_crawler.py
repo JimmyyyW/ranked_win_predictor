@@ -17,20 +17,21 @@ from tqdm import tqdm
 backbone of URL requests, 
 '''
 def get_request(url):
-    req = requests.get(url+cs.API_KEY)
+    api_num = 0
+    req = requests.get(url+cs.API_KEY[api_num])
     if req.status_code != 200:
         if req.status_code == 404:
             req_logger.error(str(req.status_code) + ' invalid request')
-            None #LOGGER
         elif req.status_code == 429:
             req_logger.critical(str(req.status_code)+ ' RATE LIMITED')
-            None #LOGGER
+            api_num += 1
         elif req.status_code == 403:
             req_logger.critical(str(req.status_code)+ ' check API key')
-            None #LOGGER
+            api_num += 1
         else:
             req_logger.info(str(req.status_code)+ ' other none-200')
-            None
+        if api_num > len(cs.API_KEY):
+            api_num == 0
     req_logger.info(str(req.status_code)+ ' successful request')
     return req.json()
 
@@ -61,7 +62,7 @@ class MatchCrawler:
     for each iteration save all matches to csv until threshold reached
     '''
 
-    def crawler_writer(self, gameId, thresh=300, n=0, lb=1):
+    def crawler_writer(self, gameId, thresh=40000, n=0, lb=1):
         df = pd.DataFrame()
         participants_in_game = self.get_summoners_from_match(str(gameId))
         print('collecting data..')
@@ -83,7 +84,7 @@ class MatchCrawler:
                                 pbar.update(100)
                                 if n >= thresh:
                                     print('completed')
-                                    df.to_csv('out.csv')
+                                    df.to_csv('game_ids.csv')
                                     return None
                                 else:
                                     continue
@@ -91,9 +92,8 @@ class MatchCrawler:
                             continue
         return None
 
-#mc = MatchCrawler()
-#summoner = 'stozer'
-#accountId = mc.get_summonerId(summoner)
-#matches = mc.get_matches_for_summoner(accountId)
-#print(matches[1])
-#mc.crawler_writer(matches[0])
+mc = MatchCrawler()
+summoner = 'S04 Upset'
+accountId = mc.get_summonerId(summoner)
+matches = mc.get_matches_for_summoner(accountId)
+mc.crawler_writer(matches[0])

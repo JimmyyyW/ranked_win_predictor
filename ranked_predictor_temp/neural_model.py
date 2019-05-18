@@ -8,11 +8,11 @@ import numpy
 numpy.random.seed(2)
 
 # loading load prima indians diabetes dataset, past 5 years of medical history 
-dataset = numpy.loadtxt("prima-indians-diabetes.csv", delimiter=",")
+dataset = numpy.loadtxt("trasformed_data.csv", delimiter=",")
 
 # split into input (X) and output (Y) variables, splitting csv data
-X = dataset[:,0:8]
-Y = dataset[:,8]
+X = dataset[:,0:5]
+Y = dataset[:,5]
 
 # split X, Y into a train and test set
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)

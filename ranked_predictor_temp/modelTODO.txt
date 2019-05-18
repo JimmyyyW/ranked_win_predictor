@@ -16,6 +16,11 @@ NEED TO FILTER MATCH_IDS FOR UNIQUE GAMES ONLY
 
 TIDY METHODS, DECLARE IN PARAMATERS
 
+stop error tdqm interaction
++++ add smoothing! 
+
+add logger
+
 move generate_modelled_data to new file with other finalising logic.
 
 

@@ -65,7 +65,7 @@ class MatchCrawler:
     for each iteration save all matches to csv until threshold reached
     '''
 
-    def crawler_writer(self, gameId, thresh=100, pg=0, lb=1):
+    def crawler_writer(self, gameId, thresh=2000, pg=0, lb=1):
         participants_in_game = self.get_summoners_from_match(str(gameId))
         print('collecting data..')
         with open('match_ids.csv', 'w', newline='') as csvFile:
@@ -96,7 +96,7 @@ class MatchCrawler:
         return None
 
 mc = MatchCrawler()
-summoner = 'JimmyyW'
+summoner = 'stozer'
 accountId = mc.get_summonerId(summoner)
 matches = mc.get_matches_for_summoner(accountId)
 #print(matches[1])

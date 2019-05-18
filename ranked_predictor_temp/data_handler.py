@@ -57,7 +57,7 @@ class DataHandler:
                 summonerId = summonerIds.get(i)
                 i+=1
                 summoner_league_data = get_request(cs.BASE_URL+cs.LEAGUE_BY_SUMMONER+summonerId)
-                time.sleep(0.5)
+                time.sleep(0.2)
                 if len(summoner_league_data) == 3:
                     ranked_5x5 = summoner_league_data[2]
                 elif len(summoner_league_data) == 2:

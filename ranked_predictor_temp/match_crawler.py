@@ -12,14 +12,17 @@ import pandas as pd
 import consts as cs
 from tqdm import tqdm
 
-
+api_num = 0
 '''
 backbone of URL requests, 
 '''
+# initialise outside function so immediate reset to api_key[0] doesn't occur
 def get_request(url):
-    api_num = 0
-    req = requests.get(url+cs.API_KEY[api_num])
+    global api_num
+    req = requests.get(url+(cs.API_KEY[api_num]))
     if req.status_code != 200:
+        time.sleep(2)
+        req = requests.get(url+(cs.API_KEY[api_num])) #repeat request with new api key
         if req.status_code == 404:
             req_logger.error(str(req.status_code) + ' invalid request')
         elif req.status_code == 429:
@@ -27,11 +30,13 @@ def get_request(url):
             api_num += 1
         elif req.status_code == 403:
             req_logger.critical(str(req.status_code)+ ' check API key')
+        elif req.status_code == 400:
+            req_logger.error(str(req.status_code)+ ' bad request')
             api_num += 1
         else:
             req_logger.info(str(req.status_code)+ ' other none-200')
-        if api_num > len(cs.API_KEY):
-            api_num == 0
+    if api_num >= len(cs.API_KEY): #check api key within list range every time
+        api_num = 0
     req_logger.info(str(req.status_code)+ ' successful request')
     return req.json()
 
@@ -70,30 +75,31 @@ class MatchCrawler:
             for participants in participants_in_game:
                 while n<thresh:
                     matches_for_participant = self.get_matches_for_summoner(participants)
-                    time.sleep(2.5)
+                    time.sleep(1.5)
                     for matchId in matches_for_participant:
                         try:
                             players = self.get_summoners_from_match(str(matchId))
-                            time.sleep(2.5)
+                            time.sleep(1.5)
                             for player in players:
                                 gameId = self.get_matches_for_summoner(player)
                                 n+=100
                                 df_temp = pd.DataFrame(gameId,columns=['GameId'])
                                 df = df.append(df_temp, ignore_index=True)
-                                time.sleep(2.5) #at this tier of recursion 2000 gameIds should have been found
-                                pbar.update(100)
+                                time.sleep(1.5) #at this tier of recursion 2000 gameIds should have been found
+                                df.drop_duplicates()
+                                pbar.update(100) 
                                 if n >= thresh:
                                     print('completed')
                                     df.to_csv('game_ids.csv')
-                                    return None
+                                    return df
                                 else:
                                     continue
                         except:
                             continue
         return None
 
-mc = MatchCrawler()
-summoner = 'S04 Upset'
-accountId = mc.get_summonerId(summoner)
-matches = mc.get_matches_for_summoner(accountId)
-mc.crawler_writer(matches[0])
+#mc = MatchCrawler()
+#summoner = 'the inescapable'
+#accountId = mc.get_summonerId(summoner)
+#matches = mc.get_matches_for_summoner(accountId)
+#mc.crawler_writer(matches[0])

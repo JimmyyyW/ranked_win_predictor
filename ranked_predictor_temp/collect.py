@@ -16,7 +16,7 @@ will collect data around platinum tier and challengers will get challenger data 
 #accountId = mc.get_summonerId(summoner)
 #matches = mc.get_matches_for_summoner(accountId)
 #data = pd.DataFrame(mc.crawler_writer(matches[0]))
-modeller.write_model_data()
+#modeller.write_model_data()
 
 #if __name__=='__main__':
     #p1 = Process(target=modeller.write_model_data(1))

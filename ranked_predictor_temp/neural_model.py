@@ -19,7 +19,7 @@ x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_
 
 # create model, add dense layers one by one specifying activation function
 model = Sequential()
-model.add(Dense(15, input_dim=8, activation='relu')) # input layer requires input_dim param
+model.add(Dense(15, input_dim=5, activation='relu')) # input layer requires input_dim param
 model.add(Dense(10, activation='relu'))
 model.add(Dense(8, activation='relu'))
 model.add(Dropout(.2))
@@ -32,4 +32,4 @@ model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy']
 model.fit(x_train, y_train, epochs = 1000, batch_size=20, validation_data=(x_test, y_test))
 
 # save the model
-model.save('weights.h5')
+model.save('mock_weights.h5')

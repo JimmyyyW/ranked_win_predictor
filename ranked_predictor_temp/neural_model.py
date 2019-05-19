@@ -8,7 +8,7 @@ import numpy
 numpy.random.seed(2)
 
 # loading load prima indians diabetes dataset, past 5 years of medical history 
-dataset = numpy.loadtxt("trasformed_data.csv", delimiter=",")
+dataset = numpy.loadtxt("ranked_predictor_temp/test/mock_data/mock_train.csv", delimiter=",")
 
 # split into input (X) and output (Y) variables, splitting csv data
 X = dataset[:,0:5]

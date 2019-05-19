@@ -90,7 +90,7 @@ class DataHandler:
                     team2_losses = team2_losses + losses
                     team2_avg_wr = (wins/(wins+losses))*100
             avg_wr = team1_avg_wr - team2_avg_wr
-            return avg_wr
+            return round(avg_wr,2)
         except:
             return None
     '''
@@ -151,6 +151,19 @@ class DataHandler:
                     j+=1
         diff_champion_mastery = team1_combined - team2_combined
         return diff_champion_mastery
+
+    '''
+    Get winning team
+    '''
+    def get_winning_team(self):
+        data = self.match_data['teams']
+        for points in data:
+            if points.get('win') == 'Win':
+                return 1
+            elif points.get('win') == 'Fail':
+                return 0
+        else:
+            return None
 
     '''
     collects data for each player, determining whether they are 'on-role' or 'off-role', where

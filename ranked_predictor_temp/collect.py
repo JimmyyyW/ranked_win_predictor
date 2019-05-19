@@ -4,9 +4,15 @@ from multiprocessing import Process
 import sys
 import modeller
 
-mc = match_crawler.MatchCrawler()
+'''
+Script to initiate collecting data, takes a summonder name (string) as a console
+input. This allows for collecting data unique to the user. I.e platinum players
+will collect data around platinum tier and challengers will get challenger data points
+'''
 
-#summoner = 'the inescapable'
+#mc = match_crawler.MatchCrawler()
+
+#summoner = input('enter your summoner name: ')
 #accountId = mc.get_summonerId(summoner)
 #matches = mc.get_matches_for_summoner(accountId)
 #data = pd.DataFrame(mc.crawler_writer(matches[0]))

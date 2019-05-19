@@ -152,11 +152,6 @@ class DataHandler:
         diff_champion_mastery = team1_combined - team2_combined
         return diff_champion_mastery
 
-    #get average champion winrate for a team
-    def get_avg_champion_winrate(self):
-        avg_winrate = 53
-        return avg_winrate
-        # to do.... champion.gg no longer exists, will have to source champion WRs from riotAPI.
     '''
     collects data for each player, determining whether they are 'on-role' or 'off-role', where
     generally players that are off-role will play significantly worse relative to players on-role 

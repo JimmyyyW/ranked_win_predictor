@@ -30,6 +30,7 @@ def get_request(url):
             api_num += 1
         elif req.status_code == 403:
             req_logger.critical(str(req.status_code)+ ' check API key')
+            api_num += 1
         elif req.status_code == 400:
             req_logger.error(str(req.status_code)+ ' bad request')
             api_num += 1
@@ -37,7 +38,8 @@ def get_request(url):
             req_logger.info(str(req.status_code)+ ' other none-200')
     if api_num >= len(cs.API_KEY): #check api key within list range every time
         api_num = 0
-    req_logger.info(str(req.status_code)+ ' successful request')
+    if req.status_code == 200:
+        req_logger.info(str(req.status_code)+ ' successful request')
     return req.json()
 
 class MatchCrawler:
@@ -97,9 +99,3 @@ class MatchCrawler:
                         except:
                             continue
         return None
-
-#mc = MatchCrawler()
-#summoner = 'the inescapable'
-#accountId = mc.get_summonerId(summoner)
-#matches = mc.get_matches_for_summoner(accountId)
-#mc.crawler_writer(matches[0])

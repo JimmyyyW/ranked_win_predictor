@@ -42,7 +42,7 @@ def generate_modelled_data(gameId):
         mod_logger.info('modeller failure')
     return df
 
-def write_model_data(sample_size=50):
+def write_model_data(sample_size=10000):
     model_data = pd.DataFrame()
     df = pd.read_csv("game_ids.csv")
     with tqdm(total=sample_size) as pbar:

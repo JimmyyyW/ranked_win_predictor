@@ -80,7 +80,7 @@ class TestDataHandler(unittest.TestCase):
         '''
         Test method correctly returning difference in number of players on their main role
         '''
-        dh = DataHandler('403412665')
+        dh = DataHandler('4026641274')
         preresult = dh.get_accountIds_from_game()
         result = dh.get_diff_onrole(preresult)
         expected = 0

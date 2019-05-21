@@ -1,0 +1,108 @@
+2019-05-21 16:14:28,992 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:30,087 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matches/4018482509?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:30,091 | get_request-46 | 200 successful request
+2019-05-21 16:14:30,106 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:30,978 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matches/4034126665?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:30,982 | get_request-46 | 200 successful request
+2019-05-21 16:14:30,986 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:31,263 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/b9vhwxPqtl2MnYhPOrsCYDATlltdKzYpMuwd7Oioi4sj3bM?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 253
+2019-05-21 16:14:31,266 | get_request-46 | 200 successful request
+2019-05-21 16:14:31,470 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:31,821 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/f4Osjvzt0EnEatkBZv7gS3up8cpGrGF9pJYJ42O2ZLjT4qQ?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 329
+2019-05-21 16:14:31,824 | get_request-46 | 200 successful request
+2019-05-21 16:14:32,028 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:32,329 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/-rDsFR-jV72d8mXFR6to6ban5SOwdWQXzQ_Yx6EAMpF0HLHe?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 267
+2019-05-21 16:14:32,332 | get_request-46 | 200 successful request
+2019-05-21 16:14:32,541 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:32,903 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/4tLTdqsl6TA2X4rJ6YE1kShBJOGFZju51ei-ucib4i9zyxpj?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 293
+2019-05-21 16:14:32,906 | get_request-46 | 200 successful request
+2019-05-21 16:14:33,112 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:33,412 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/VzssNvWSPe8tH4ySvU5PUmscP9iBCH9hx_M2vHtuXZ2IOz8?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 327
+2019-05-21 16:14:33,415 | get_request-46 | 200 successful request
+2019-05-21 16:14:33,623 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:33,894 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/wOj0X7GgfYAmdtOYsKF4Mwun9AOTc_SrQDMK71q1647YQv0?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 262
+2019-05-21 16:14:33,897 | get_request-46 | 200 successful request
+2019-05-21 16:14:34,105 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:34,384 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/f67-LVvKmeKF11YZKr2lzYsLKs9c2-lM10s1n1sc7zL7_E0?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:34,387 | get_request-46 | 200 successful request
+2019-05-21 16:14:34,595 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:34,873 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/T6vh8jJvPhtnkoptIvyJsVbOTRtZdvreZpYPGU9SoZPTzrU?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 323
+2019-05-21 16:14:34,877 | get_request-46 | 200 successful request
+2019-05-21 16:14:35,081 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:35,464 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/kM0PNtmvJiip7Uxf4GTGY5hUDr5hIhhJXv3PWD1wd-oHsZvB?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 265
+2019-05-21 16:14:35,467 | get_request-46 | 200 successful request
+2019-05-21 16:14:35,674 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:35,974 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/league/v4/entries/by-summoner/_ONtstz2Ersw4JKnu0LBbNlcmRnpBgr98PaE3TaGxZM2lbE?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 257
+2019-05-21 16:14:35,977 | get_request-46 | 200 successful request
+2019-05-21 16:14:36,187 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:37,042 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matches/4034126665?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 5876
+2019-05-21 16:14:37,046 | get_request-46 | 200 successful request
+2019-05-21 16:14:37,049 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:37,362 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/b9vhwxPqtl2MnYhPOrsCYDATlltdKzYpMuwd7Oioi4sj3bM?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:37,370 | get_request-46 | 200 successful request
+2019-05-21 16:14:37,880 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:38,885 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/f4Osjvzt0EnEatkBZv7gS3up8cpGrGF9pJYJ42O2ZLjT4qQ?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:38,890 | get_request-46 | 200 successful request
+2019-05-21 16:14:39,395 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:39,681 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/-rDsFR-jV72d8mXFR6to6ban5SOwdWQXzQ_Yx6EAMpF0HLHe?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:39,688 | get_request-46 | 200 successful request
+2019-05-21 16:14:40,198 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:41,054 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/4tLTdqsl6TA2X4rJ6YE1kShBJOGFZju51ei-ucib4i9zyxpj?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:41,060 | get_request-46 | 200 successful request
+2019-05-21 16:14:41,569 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:41,925 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/VzssNvWSPe8tH4ySvU5PUmscP9iBCH9hx_M2vHtuXZ2IOz8?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:41,929 | get_request-46 | 200 successful request
+2019-05-21 16:14:42,438 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:42,832 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/wOj0X7GgfYAmdtOYsKF4Mwun9AOTc_SrQDMK71q1647YQv0?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:42,836 | get_request-46 | 200 successful request
+2019-05-21 16:14:43,341 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:43,723 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/f67-LVvKmeKF11YZKr2lzYsLKs9c2-lM10s1n1sc7zL7_E0?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:43,727 | get_request-46 | 200 successful request
+2019-05-21 16:14:44,232 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:45,073 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/T6vh8jJvPhtnkoptIvyJsVbOTRtZdvreZpYPGU9SoZPTzrU?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:45,079 | get_request-46 | 200 successful request
+2019-05-21 16:14:45,585 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:45,874 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/kM0PNtmvJiip7Uxf4GTGY5hUDr5hIhhJXv3PWD1wd-oHsZvB?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:45,877 | get_request-46 | 200 successful request
+2019-05-21 16:14:46,382 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:46,696 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/champion-mastery/v4/champion-masteries/by-summoner/_ONtstz2Ersw4JKnu0LBbNlcmRnpBgr98PaE3TaGxZM2lbE?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:46,700 | get_request-46 | 200 successful request
+2019-05-21 16:14:47,210 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:48,106 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matches/4026641274?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 5003
+2019-05-21 16:14:48,109 | get_request-46 | 200 successful request
+2019-05-21 16:14:48,113 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:48,747 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/fpwJ3-m9pJzL5wIQOCY7rv4Oa2pYu92YAanTG9BDmHplyA?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:48,757 | get_request-46 | 200 successful request
+2019-05-21 16:14:49,266 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:50,037 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/C1x2LeQo4bWc2VgV8ICeTbv_R5IPBHBqLf9n_JY13kbtjQ?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:50,042 | get_request-46 | 200 successful request
+2019-05-21 16:14:50,547 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:51,481 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/-vqKRGtVnC9HVlbLYVpGtlp1HMbk5bkdR3-sXjrtSrRnmJo?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:51,484 | get_request-46 | 200 successful request
+2019-05-21 16:14:51,993 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:53,324 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/a5jzMg7QmUGD3pSMdODeV1TqDfI-bhPy-7dSU9tIbnLw9A?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:53,328 | get_request-46 | 200 successful request
+2019-05-21 16:14:53,837 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:54,555 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/cbRHRr6jdHp_PADpb9GUn1fVIFqSaq39WCXCyHow5kwtvQ4?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 1890
+2019-05-21 16:14:54,558 | get_request-46 | 200 successful request
+2019-05-21 16:14:55,067 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:56,110 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/St6sXjqMYngRbZrtArKBDK-FPmkmBUhskjSbEWYh-oZvtQ?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:56,114 | get_request-46 | 200 successful request
+2019-05-21 16:14:56,621 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:57,625 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/ZBIcZzVNyboMJ08CJ0Vv5Jl4K1MccFWkyiBU-qBO9b2DpA?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:57,628 | get_request-46 | 200 successful request
+2019-05-21 16:14:58,138 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:14:59,161 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/HTpDfc4Cl9liNMHb7_NuuI2FE-AkbR9LGIhm9ilomvcIMg?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:14:59,165 | get_request-46 | 200 successful request
+2019-05-21 16:14:59,674 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:15:01,310 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/4j6sjChqiIXberR2jAOLjvmTeLT2mLDi4sSSrbKkxg9GB4Y?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:15:01,313 | get_request-46 | 200 successful request
+2019-05-21 16:15:01,821 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:15:02,849 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matchlists/by-account/0irv5j_AXyVKH9ym_RwYhsOcK6q81r3bKRoSGt1SpBvOmA?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 1803
+2019-05-21 16:15:02,852 | get_request-46 | 200 successful request
+2019-05-21 16:15:03,365 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:15:05,046 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matches/4018482509?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:15:05,049 | get_request-46 | 200 successful request
+2019-05-21 16:15:05,054 | _new_conn-813 | Starting new HTTPS connection (1): euw1.api.riotgames.com:443
+2019-05-21 16:15:05,920 | _make_request-393 | https://euw1.api.riotgames.com:443 "GET /lol/match/v4/matches/4034126665?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d HTTP/1.1" 200 None
+2019-05-21 16:15:05,924 | get_request-46 | 200 successful request

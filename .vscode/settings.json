@@ -1,3 +1,13 @@
 {
-    "python.pythonPath": "/Users/jameswhitfield/anaconda3/bin/python"
+    "python.pythonPath": "/Users/jameswhitfield/anaconda3/bin/python",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./ranked_predictor_temp",
+        "-p",
+        "*_test.py"
+    ],
+    "python.testing.pyTestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": true
 }

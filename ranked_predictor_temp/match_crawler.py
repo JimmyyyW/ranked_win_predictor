@@ -19,11 +19,15 @@ backbone of URL requests,
 # initialise outside function so immediate reset to api_key[0] doesn't occur
 def get_request(url):
     global api_num
+    trys = 0
     req = requests.get(url+(cs.API_KEY[api_num]))
     if req.status_code != 200:
+        trys += 1
         time.sleep(2)
         req = requests.get(url+(cs.API_KEY[api_num])) #repeat request with new api key
-        if req.status_code == 404:
+        if trys > 5:
+            return None
+        elif req.status_code == 404:
             req_logger.error(str(req.status_code) + ' invalid request')
         elif req.status_code == 429:
             req_logger.critical(str(req.status_code)+ ' RATE LIMITED')

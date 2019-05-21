@@ -48,10 +48,8 @@ class DataHandler:
     '''
         get summoner data for ranked games only
         '''
-    def get_ranked5x5_by_summoner(self, summonerIds):
-        i=1
-        ranked_stats = []
-        #print('collecting summoner data...')
+    def get_ranked5x5_by_summoner(self, summonerIds, i=1, ranked_stats=[]):
+        #collecting summoner data
         for summonerId in summonerIds:
             while i < 11:
                 summonerId = summonerIds.get(i)

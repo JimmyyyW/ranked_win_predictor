@@ -2,7 +2,7 @@
 '''
 Global variables for http requests
 '''
-API_KEY = ['?api_key=RGAPI-220080db-c62b-4f14-b5c2-2fef71c569af', #JImmyyW
+API_KEY = ['?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d', #JImmyyW
            '?api_key=RGAPI-6868645b-fc83-437e-aa97-5e8339b26069', #ishady
            '?api_key=RGAPI-ba24023c-a4d8-456d-8557-8c8025688d94', #ihasm
            '?api_key=RGAPI-6682b4af-77bb-4130-872e-374302c6a8e8', #darothet

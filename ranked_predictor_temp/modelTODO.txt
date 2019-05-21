@@ -23,6 +23,8 @@ add logger
 
 move generate_modelled_data to new file with other finalising logic.
 
+REMOVE TRYS FROM GET_REQUEST IF IT BREAKS!!!!!
+
 
 
 

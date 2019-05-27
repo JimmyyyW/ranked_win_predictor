@@ -9,7 +9,7 @@ import numpy
 numpy.random.seed(2)
 
 # loading load game dataset, one data entry = one game
-dataset = numpy.loadtxt("ranked_predictor_temp\game_data.csv", delimiter=",")
+dataset = numpy.loadtxt("game_data.csv", delimiter=",")
 
 #create scalar
 scaler = MinMaxScaler()
@@ -41,7 +41,7 @@ model.add(Dense(1, activation='sigmoid')) # sigmoid instead of relu for final pr
 model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
 
 # call the function to fit to the data (training the network)
-model.fit(x_train, y_train, epochs = 1000, batch_size=20, validation_data=(x_test, y_test))
+model.fit(x_train, y_train, epochs = 700, batch_size=20, validation_data=(x_test, y_test))
 
 #calculate predictions
 predictions = model.predict(X)
@@ -59,13 +59,3 @@ model.save_weights("model.h5")
 print("Saved model to disk")
  
 # later...
-''' 
-# load json and create model
-json_file = open('model.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-loaded_model = model_from_json(loaded_model_json)
-# load weights into new model
-loaded_model.load_weights("model.h5")
-print("Loaded model from disk")
-'''

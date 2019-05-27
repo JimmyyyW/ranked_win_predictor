@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Predict
 from .forms import PredictForm
 from django.contrib.auth.decorators import login_required
+from ranked_predictor_temp.predict import predict as pred
 import cgi
 
 def home(request):
@@ -25,7 +26,15 @@ def result(request):
     if request.method == 'POST':
         form = PredictForm(request.POST)
         if form.is_valid():
-           # predict_result = pred(form.summoner)
-            return render(request, 'predictor/predict/result.html', {'form': form})
+            #x = 1
+            x = form.cleaned_data['summoner']
+            nnr = pred(x)
+            if nnr[0] == 0:
+                nnr = 'RED'
+            elif nnr[0] == 1:
+                nnr = 'BLUE'
+            else:
+                nnr = 'ERROR'
+            return render(request, 'predictor/predict/result.html', {'form': nnr})
         else:
             redirect('predict.html')

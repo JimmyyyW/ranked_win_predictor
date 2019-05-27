@@ -5,10 +5,11 @@ from loggers import mod_logger
 import data_handler as dhdlr
 import time
 
-#using data handler functions, iterate through gameIds 
+#using data handler functions, iterate through gameIds
+
 def generate_modelled_data(gameId):
     df = pd.DataFrame(columns=['avg_wr','avg_ws','avg_mstry','avg_onrle'])
-    try: 
+    try:
         dh = dhdlr.DataHandler(gameId)
         time.sleep(0.25)
         accountIds = dh.get_accountIds_from_game()
@@ -42,7 +43,7 @@ def generate_modelled_data(gameId):
         mod_logger.info('modeller failure')
     return df
 
-def write_model_data(sample_size=10000):
+def write_model_data(sample_size):
     model_data = pd.DataFrame()
     df = pd.read_csv("game_ids.csv")
     with tqdm(total=sample_size) as pbar:
@@ -55,5 +56,3 @@ def write_model_data(sample_size=10000):
     model_data.to_csv('modelled_data.csv')
     print(model_data.head())
     return None
-
-#write_model_data()

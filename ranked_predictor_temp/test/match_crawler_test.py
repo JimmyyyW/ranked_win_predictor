@@ -2,12 +2,13 @@ import unittest
 from unittest import mock
 import json
 import match_crawler
-from match_crawler import MatchCrawler
 
-class TestDataHandler(unittest.TestCase):
-
-    def get_request_reqstatuscode_is_404_if_bad_url(self):
-        req = match_crawler.get_request('https://www.definitelynotarealurl.com/return/404')
-        print(req)
+class TestMatchCrawler(unittest.TestCase):
+    @mock.patch('match_crawler.get_request')
+    def get_request_reqstatuscode_is_404_if_bad_url(self, mock_url):
+        request = match_crawler.get_request(mock_url)
+        print(request)
         return None
 
+if __name__=='__main__':
+    unittest.main()

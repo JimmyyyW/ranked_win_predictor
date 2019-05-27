@@ -52,7 +52,9 @@ class TestDataHandler(unittest.TestCase):
         with open('ranked_predictor_temp/test/mock_data/mock_ranked5x5.json') as f:
             ranked5x5_data = json.load(f)
             expected = ranked5x5_data[2]
-        self.assertEqual(expected, expected)
+        dh = DataHandler('4018482509')
+        dh.get_ranked5x5_by_summoner = Mock(return_value=expected)
+        self.assertEqual(expected, dh.get_ranked5x5_by_summoner)
         return None
 
     def test_get_avg_wr(self):

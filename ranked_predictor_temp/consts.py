@@ -2,11 +2,11 @@
 '''
 Global variables for http requests
 '''
-API_KEY = ['?api_key=RGAPI-e0cd662e-43d2-41cd-8252-bb963c59901d', #JImmyyW
-           '?api_key=RGAPI-6868645b-fc83-437e-aa97-5e8339b26069', #ishady
-           '?api_key=RGAPI-ba24023c-a4d8-456d-8557-8c8025688d94', #ihasm
-           '?api_key=RGAPI-6682b4af-77bb-4130-872e-374302c6a8e8', #darothet
-           '?api_key=RGAPI-d4c4ae07-fa1c-4c80-a14b-9ddaa58db216'] #Forb
+API_KEY = ['?api_key=RGAPI-53007931-56bc-4b3d-aa4b-3e2044777039', #JImmyyW!a
+           '?api_key=RGAPI-ab0eda4e-dee0-487e-b3f7-da30263bf4a5', #ishadya
+           '?api_key=RGAPI-f74c17d9-5bf8-41af-ba57-2aaf51082100', #ihasm! a
+           '?api_key=RGAPI-bad94029-6650-4d6b-b00a-90ffdcc5a02c', #darotheta
+           '?api_key=RGAPI-6818e025-699b-46fb-80c9-62472e63bc53'] #Forba
  
 BASE_URL = 'https://euw1.api.riotgames.com/lol/'
 SUMMONER_BY_NAME = 'summoner/v4/summoners/by-name/'

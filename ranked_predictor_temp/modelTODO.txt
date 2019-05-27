@@ -8,7 +8,7 @@
 8.
 9.
 
-NEED TO DOCUMENT NUMBER OF API CALLS !!!!!
+NEED TO DOCUMENT NUMBER OF API CALLS !!!!! TODO
 
 NEED TO FILTER FOR RANKED DATA TO SAVE TO CSV ONLY 
 
@@ -16,15 +16,13 @@ NEED TO FILTER MATCH_IDS FOR UNIQUE GAMES ONLY
 
 TIDY METHODS, DECLARE IN PARAMATERS
 
-stop error tdqm interaction
-+++ add smoothing! 
-
-add logger
++++ add smoothing!  TODO
 
 move generate_modelled_data to new file with other finalising logic.
 
 REMOVE TRYS FROM GET_REQUEST IF IT BREAKS!!!!!
 
+IF FIRST API KEY WRONG PROJECT WON'T RUN
 
 
 

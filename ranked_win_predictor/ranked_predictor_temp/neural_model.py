@@ -25,7 +25,7 @@ X = normalised[:,1:5]
 Y = normalised[:,5]
 
 # split X, Y into a train and test set
-x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.20, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.25, random_state=42)
 
 # create model, add dense layers one by one specifying activation function
 model = Sequential()
@@ -41,7 +41,7 @@ model.add(Dense(1, activation='sigmoid')) # sigmoid instead of relu for final pr
 model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
 
 # call the function to fit to the data (training the network)
-model.fit(x_train, y_train, epochs = 700, batch_size=20, validation_data=(x_test, y_test))
+model.fit(x_train, y_train, epochs = 600, batch_size=20, validation_data=(x_test, y_test))
 
 #calculate predictions
 predictions = model.predict(X)

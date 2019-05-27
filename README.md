@@ -25,3 +25,12 @@ Run predict.py, enter a summoner name of a summoner who is currently in a live g
 """
     python predict.py
 """
+\n
+TO USE ON WEB
+run
+"""
+    python manage.py runserver
+"""
+navigate to localhost:8000 and Register. Once logged it you can navigate to predict and enter a summoner name of a player in game and get a live prediction
+
+Note: currently web based predictions lack an input due to inability to get stats in game.

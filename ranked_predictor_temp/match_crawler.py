@@ -1,9 +1,12 @@
 import time
-import consts as cs
+
 import pandas as pd
 import tqdm
 from tqdm import tqdm
+
+import consts as cs
 from get_request import get_request
+
 
 class MatchCrawler:
     def get_summonerId(self,summoner):

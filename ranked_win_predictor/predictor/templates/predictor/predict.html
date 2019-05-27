@@ -1,0 +1,18 @@
+{% extends "predictor/base.html" %}
+{% block content %}
+    <center>
+    <h1>Predict a game now!</h1>
+     <div class="container-fluid">
+      <div class="container">
+       <form name="predict" action="/predict/result/" method="POST">
+        {% csrf_token %}
+        <input name="summoner" type="text" placeholder="summoner name"/>
+        <button type="submit" value="submit" class="btn btn-primary btn-lg">Predict</button>
+       <form> 
+      <div>
+        <h5> Enter a summoner name to get a prediction on their live game </h5>
+       </div> 
+      </div> 
+     </div>
+    </center>
+{% endblock content %}

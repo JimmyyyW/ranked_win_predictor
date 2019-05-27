@@ -1,11 +1,11 @@
-from get_request import get_request
-import consts as cs
-from modeller import generate_modelled_data
-import data_handler as dhdlr
 import time
-from loggers import mod_logger
 import pandas as pd
+import consts as cs
+import data_handler as dhdlr
 from get_request import get_request
+from loggers import mod_logger
+from modeller import generate_modelled_data
+
 
 def get_live_game(summoner):
     #get summonerId from player name

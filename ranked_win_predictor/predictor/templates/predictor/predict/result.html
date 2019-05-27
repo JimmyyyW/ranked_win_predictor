@@ -1,0 +1,9 @@
+{% extends "predictor/base.html" %}
+{% block content %}
+{% csrf_token %}
+<center>
+<h3> Prediction Result </h2>
+{{ form.as_table }}
+</center>
+   
+{% endblock content %}

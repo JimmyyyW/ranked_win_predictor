@@ -14,16 +14,14 @@ It is recommended to collect 20000 data points using that one summoner name. Thi
 
 NOTE: IF THIS ERRORS, CHECK API KEY, this is a failsafe as to not send invalid requests to the riot games api
 
-DATA MODELLING
-The next step is to model the data you have collected this is performed by runnning the model.py file using the following console
-command, or being ran from an IDE. This is the longest part of the process as for each input node of the nueral network model a number of
-api calls must be performed to get the necessary data, as well as some computing to normalise the data.
+TRAIN THE NEURAL NET
+providing you have data collected (my training consisted of around 14k samples) the training should be ready to go ahead. Various settings can be changed withing neural_model.py. The current settings have been configured through iterative testing. To train the model, run the following command. THIS WILL OVERWRITE THE SAVED WEIGHTS (unless you change the filepath)
 """
-    python model.py
+    python neural_model.py
 """
 
-TRAINING AND TESTING THE MODEL
-
+USE THE MODEL TO PREDICT
+Run predict.py, enter a summoner name of a summoner who is currently in a live game and you will receive a predicted value (1 or 0) for win or loss respectively.
 """
-    neural model.py
+    python predict.py
 """

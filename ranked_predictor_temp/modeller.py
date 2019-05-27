@@ -53,6 +53,6 @@ def write_model_data(sample_size):
             pbar.update(1)
             if index >= sample_size:
                 break
-    model_data.to_csv('modelled_data.csv')
+    model_data.to_csv('game_data.csv')
     print(model_data.head())
     return None

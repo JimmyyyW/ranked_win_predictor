@@ -12,7 +12,7 @@ class DataHandler:
     #Instantiate with gameId to get modelled data for single game
     def __init__(self, gameId_input):
         self.gameId = gameId_input
-        self.match_data = get_request(cs.BASE_URL+cs.MATCH_BY_MATCHID+self.gameId)
+        self.match_data = get_request(cs.BASE_URL+cs.MATCH_BY_MATCHID+str(self.gameId))
     '''
     get all summoner Ids from game
     '''
@@ -126,10 +126,8 @@ class DataHandler:
         calculate difference in total mastery accross the two teams
         '''
     def get_diff_champion_mastery(self, summonerIds):
-        #print('calculating difference in champion mastery...')
         championIds,summonerIds = [],[]
         i, j, team1_combined, team2_combined = 0,0,0,0
-        #match_data = get_request(BASE_URL+MATCH_BY_MATCHID+self.gameId)
         data = (self.match_data['participants'])
         for participants in data:
             championIds.append(participants['championId'])

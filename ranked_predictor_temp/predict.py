@@ -27,6 +27,7 @@ Xnew = array([[1333831,-1,2.7,2],[63835,0,3.2,1],[-177814,-1,-2.63,0]])#note the
 # make a prediction
 ynew = loaded_model.predict_classes(Xnew2)
 # show the inputs and predicted outputs
+print('1 = blue side win 0 = red side win\n')
 print("X=%s, Predicted=%s" % (Xnew2[0], ynew[0]))
 '''
 for i in range(len(Xnew)):

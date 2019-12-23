@@ -8,7 +8,7 @@ ALWAYS REGENERATE API KEYS BEFORE ATTEMPTING TO RUN ANY PROGRAMS
 ## DATA COLLECTION
 If running the project from scratch, first you must run the collect.py file using the following console command, or being
 ran from an IDE. Whenprompted to input a summoner name, please use your own summoner name (IGN) and if you don't have one and are using the 
-project for none-LoL related purposes, go [here][https://euw.op.gg/ranking/ladder/ and take one].
+project for none-LoL related purposes, go to [https://euw.op.gg/ranking/ladder/ and take one].
 
 """
     python collect.py
